@@ -1,0 +1,69 @@
+$itemMenuHeight: 50px;
+
+//ESTILOS GENERALES MENU
+#menu {
+  .menu__element {
+    display: block;
+    width: 100%;
+    list-style: none;
+  }
+  .menu__link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: none;
+    color: white;
+  }
+  .menu__link:hover {
+    color: gold;
+  }
+}
+
+//MENU SIZE MOBILE
+.menuMobile {
+  position: absolute;
+  transform: scale(0);
+  transition: all 1s;
+  width: 100% !important;
+  margin-top: 22px;
+  margin-left: -418px;
+  margin-right: 0px;
+  background-color: black;
+  opacity: 0.9;
+  .menu__link {
+    line-height: $itemMenuHeight;
+    border-top: 1px solid gold;
+  }
+  .menu__link:hover {
+    background-color: rgb(44, 44, 44);
+    color: gold;
+  }
+}
+
+//MENU
+.menuDesktop {
+  display: flex;
+  justify-content: space-around;
+}
+
+#menuCheck {
+  display: none;
+}
+
+.menuIcon {
+  color: white;
+  font-size: 24px;
+  margin-right: 15px;
+}
+
+#menuCheck:checked ~ .menuMobile {
+  transform: scale(1);
+  transition: all 1s;
+}
+
+@media (min-width: 600px) {
+  .menuIcon {
+    display: none;
+  }
+}

@@ -1,0 +1,5 @@
+.catalogo{
+    width: calc(100% - 2px);
+    height:500px;
+    border: 1px solid black;
+}
