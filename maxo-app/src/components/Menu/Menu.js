@@ -10,7 +10,7 @@ export const Menu = ({ links, rutas, windowWidth }) => {
                     links.map(function (link, index) {
                         return (
                             <li className="menu__element" >
-                                <NavLink key={rutas[index].substr(10, rutas[index.length])} to={rutas[index]} className="menu__link">
+                                <NavLink activeClassName="menu__link-active" key={rutas[index].substr(10, rutas[index.length])} to={rutas[index]} className="menu__link">
                                     {link}
                                 </NavLink>
                             </li>

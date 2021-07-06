@@ -2,7 +2,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { Home } from './pages/Home.js'
 import { ItemListContainer } from './pages/ItemListContainer/ItemListContainer.js'
 import { ItemDetailContainer } from './pages/ItemDetailContainer/ItemDetailContainer'
-import { Page } from './pages/page'
+import {Comprar} from './components/Comprar/Comprar'
 
 
 function App() {
@@ -17,6 +17,9 @@ function App() {
         </Route>
         <Route path="/item/:id">
             <ItemDetailContainer />
+        </Route>
+        <Route path="/cart">
+            <Comprar/>
         </Route>
       </Switch>
     </BrowserRouter>

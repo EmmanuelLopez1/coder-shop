@@ -9,11 +9,13 @@ export const MenuContainer = () => {
     const categorias = ['Computadores', 'Teclados', 'Mouses']
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
-    window.addEventListener('resize', () => {
-        setWindowWidth(window.innerWidth)
-    })
+   
 
     useEffect(() => {
+        window.addEventListener('resize', () => {
+            setWindowWidth(window.innerWidth)
+        })
+        
         if (windowWidth > 600) {
             let menu = document.querySelector('#menu')
             let width = categorias.length * 100

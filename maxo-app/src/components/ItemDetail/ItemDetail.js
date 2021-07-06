@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Boton } from '../Boton/Boton'
+import { ItemCount } from '../ItemCount/ItemCount'
 import './ItemDetail.scss'
 
 export const ItemDetail = ({ item }) => {
     const [price, setPrice] = useState('')
+    const [productosComprados, setProductosComprados] = useState(false)
 
     useEffect(() => {
         setPrice(Math.floor(item.price[0].price))
+        
     }, [])
+
+    
+    function onAdd(noProductos) {
+        setProductosComprados(noProductos)
+        
+    }
 
     return (
         <div className="itemDetail">
@@ -20,6 +31,7 @@ export const ItemDetail = ({ item }) => {
             <p className="itemDetail__description">
                 {item.description}
             </p>
+           {productosComprados === false ?  <ItemCount stock={5} initial={1} onAdd={onAdd} productName={item.name}/> : <Link to={'/cart'}><Boton>Terminar Compra</Boton></Link> }
         </div>
     )
 }

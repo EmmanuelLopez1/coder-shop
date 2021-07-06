@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import './ItemListContainer.css'
-import { ItemCount } from '../../components/ItemCount/ItemCount.js'
 import { ItemList } from '../../components/ItemList/ItemList.js'
 import { Loader } from '../../components/Loader/Loader'
 import { Page } from '../page.js'
@@ -42,16 +41,10 @@ export const ItemListContainer = () => {
             setCategory(data[0])
         }
     }, [items, id])
-
-    function onAdd() {
-        alert('All rigth')
-    }
-
     return (
         <Page>
             <div className="catalogo">
                 {items !== undefined ? <ItemList key={items.id} items={items} id={id} category={category} /> : <Loader />}
-                <ItemCount productName="Motocicleta" initial="1" stock="5" onAdd={onAdd} />
             </div>
         </Page>
     )
