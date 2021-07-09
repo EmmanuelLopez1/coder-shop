@@ -3,9 +3,10 @@ import './ItemCount.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { Boton } from '../Boton/Boton'
 
 
-export const ItemCount = ({ stock, initial, onAdd, productName }) => {
+export const ItemCount = ({ item, stock, initial, onAdd, eliminar, removeAllElements }) => {
 
     //PASAR LA LOGICA AL PADRE DE ESTE COMPONENTE
     const [stockInicial, setStock] = useState(parseInt(stock))
@@ -38,7 +39,11 @@ export const ItemCount = ({ stock, initial, onAdd, productName }) => {
     }
 
     function Compra() {
-        onAdd(cantArticulos)
+        onAdd({ item, cantArticulos })
+    }
+
+    function Eliminar() {
+        eliminar(item.id)
     }
 
     return (
@@ -52,9 +57,17 @@ export const ItemCount = ({ stock, initial, onAdd, productName }) => {
                     <FontAwesomeIcon icon={faPlus} className="product-count__icon" onClick={aumentarArticulos} />
                 </div>
             </div>
-            <button className="add-to-cart" disabled={stockInicial === 0 && cantArticulos === 0 ? true : false} onClick={Compra}>
+            <Boton click={Compra} clase={`btn btnAdd`} disabled={stockInicial === 0 && cantArticulos === 0 ? true : false}>
                 Agregar
-            </button>
+            </Boton>
+    
+            <Boton click={Eliminar} clase={`btn btnDelete`}>
+                Eliminar
+            </Boton>
+
+            <Boton click={removeAllElements} clase={`btn btnDelete`}>
+                Eliminar elementos
+            </Boton>
         </div>
     )
 }
