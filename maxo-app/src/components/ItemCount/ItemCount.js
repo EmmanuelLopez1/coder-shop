@@ -38,13 +38,6 @@ export const ItemCount = ({ item, stock, initial, onAdd, eliminar, removeAllElem
         }
     }
 
-    function Compra() {
-        onAdd({ item, cantArticulos })
-    }
-
-    function Eliminar() {
-        eliminar(item.id)
-    }
 
     return (
         <div className="item-count">
@@ -57,11 +50,11 @@ export const ItemCount = ({ item, stock, initial, onAdd, eliminar, removeAllElem
                     <FontAwesomeIcon icon={faPlus} className="product-count__icon" onClick={aumentarArticulos} />
                 </div>
             </div>
-            <Boton click={Compra} clase={`btn btnAdd`} disabled={stockInicial === 0 && cantArticulos === 0 ? true : false}>
+            <Boton click={()=>{onAdd({ item, cantArticulos})}} clase={`btn btnAdd`} disabled={stockInicial === 0 && cantArticulos === 0 ? true : false}>
                 Agregar
             </Boton>
     
-            <Boton click={Eliminar} clase={`btn btnDelete`}>
+            <Boton click={()=>{eliminar(item.id)}} clase={`btn btnDelete`}>
                 Eliminar
             </Boton>
 

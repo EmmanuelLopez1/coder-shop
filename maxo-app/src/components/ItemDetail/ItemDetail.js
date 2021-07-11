@@ -20,16 +20,7 @@ export const ItemDetail = ({ item }) => {
     function onAdd(producto) {
         addItem(producto)
     }
-
-    function eliminar(id){
-        removeItem(id)
-    }
-
-    function removeElements(params) {
-        deleteAllElements()
-    }
-
-    
+ 
     return (
         <div className="itemDetail">
             <h3 className="itemDetail__name">
@@ -42,7 +33,7 @@ export const ItemDetail = ({ item }) => {
             <p className="itemDetail__description">
                 {item.description}
             </p>
-           {productosComprados === false ?  <ItemCount item={item} stock={5} initial={1} onAdd={onAdd} eliminar={eliminar} removeAllElements={removeElements} productName={item.name}/> : <Link to={'/cart'}><Boton>Terminar Compra</Boton></Link> }
+           {productosComprados === false ?  <ItemCount item={item} stock={5} initial={1} onAdd={onAdd} eliminar={removeItem} removeAllElements={deleteAllElements} productName={item.name}/> : <Link to={'/cart'}><Boton>Terminar Compra</Boton></Link> }
         </div>
     )
 }

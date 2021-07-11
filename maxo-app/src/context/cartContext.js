@@ -15,10 +15,9 @@ export const CartProvider = ({ children }) => {
             updateCart(id, noArt)
         }
         else{
-            setItem(item.concat(newItem));
+            setItem([...item,  newItem]);
         }
     }
-
 
     function isInCart(id) {
         const validacion = item.findIndex(item=> item.item.id === id)
@@ -49,7 +48,6 @@ export const CartProvider = ({ children }) => {
     }
 
     function removeItem(id) {
-        console.log(id);
         const items = item.filter(item => item.item.id != id)
         setItem(items)
     }
