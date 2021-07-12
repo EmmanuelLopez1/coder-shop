@@ -19,6 +19,7 @@ export const ItemDetail = ({ item }) => {
     
     function onAdd(producto) {
         addItem(producto)
+        setProductosComprados(true)
     }
  
     return (
@@ -36,4 +37,4 @@ export const ItemDetail = ({ item }) => {
            {productosComprados === false ?  <ItemCount item={item} stock={5} initial={1} onAdd={onAdd} eliminar={removeItem} removeAllElements={deleteAllElements} productName={item.name}/> : <Link to={'/cart'}><Boton>Terminar Compra</Boton></Link> }
         </div>
     )
-}
+}   

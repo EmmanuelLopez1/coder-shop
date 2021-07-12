@@ -4,6 +4,7 @@ import './ItemListContainer.css'
 import { ItemList } from '../../components/ItemList/ItemList.js'
 import { Loader } from '../../components/Loader/Loader'
 import { Page } from '../page.js'
+import {Item} from '../../components/Item/Item'
 
 
 
@@ -41,11 +42,23 @@ export const ItemListContainer = () => {
             setCategory(data[0])
         }
     }, [items, id])
+
+
+
+
     return (
+        // <Page>
+        //     <div className="catalogo">
+        //         {items !== undefined  ? <ItemList key={items.id} items={items} id={id} category={category} /> : <Loader />}
+        //     </div>
+        // </Page>
+
         <Page>
-            <div className="catalogo">
-                {items !== undefined ? <ItemList key={items.id} items={items} id={id} category={category} /> : <Loader />}
-            </div>
+            <>
+            {category !== undefined ? <Item key={id} item={category} /> : items !== undefined  ? <ItemList key={items.id} items={items} id={id} category={category} /> : <Loader /> }
+            {}
+            </>
+            
         </Page>
     )
 }
