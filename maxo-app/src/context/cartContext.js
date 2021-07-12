@@ -3,10 +3,31 @@ export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
     const [item, setItem] = useState([])
+    const [precioTotal, setPrecioTotal] = useState()
     
     useEffect(() => {
+        getPrecioTotal()
         console.log(item);
     }, [item])
+
+    const deleteArticle = (id)=>{
+        item.map(item=> {
+            if(item.item.id === id){
+                item.cantArticulos--
+                console.log('baby');
+            }
+        })
+    }
+
+    const getPrecioTotal = ()=>{
+        let total = 0
+        
+        item.map(item => {
+            total += parseInt(item.item.price[0].price) * item.cantArticulos
+        })
+        setPrecioTotal(total)
+        console.log(total);
+    }
 
     const addItem = (newItem) => {
         const id = newItem.item.id
@@ -57,7 +78,7 @@ export const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{item, addItem, removeItem, deleteAllElements }}>
+        <CartContext.Provider value={{item, precioTotal, addItem, removeItem, deleteAllElements, deleteArticle }}>
             {children}
         </CartContext.Provider>
     )

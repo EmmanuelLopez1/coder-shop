@@ -18,7 +18,9 @@ export const Header = () => {
                 </div>
                 <div className="navbar__menu">
                     <MenuContainer />
-                    <CardWidget />
+                    <Link to='/cart'>
+                        <CardWidget />
+                    </Link>
                 </div>
             </div>
         </header>

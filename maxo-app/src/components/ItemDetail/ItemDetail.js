@@ -17,8 +17,8 @@ export const ItemDetail = ({ item }) => {
     }, [])
 
     
-    function onAdd(producto) {
-        addItem(producto)
+    function onAdd(cantArticulos) {
+        addItem({item, cantArticulos})
         setProductosComprados(true)
     }
  

@@ -11,7 +11,12 @@ export const CardWidget = () => {
     const [ cantArt, setCantArt ] = useState('baby')
 
     useEffect(() => {
-        setCantArt(item.length)
+        let articulos = 0
+        const art = item.map((item) =>{
+            articulos += item.cantArticulos
+        })
+        setCantArt(articulos)
+        
     }, [item])
 
     return (

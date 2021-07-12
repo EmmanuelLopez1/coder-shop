@@ -6,7 +6,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Boton } from '../Boton/Boton'
 
 
-export const ItemCount = ({ item, stock, initial, onAdd, eliminar, removeAllElements }) => {
+export const ItemCount = ({stock, initial, onAdd}) => {
 
     //PASAR LA LOGICA AL PADRE DE ESTE COMPONENTE
     const [stockInicial, setStock] = useState(parseInt(stock))
@@ -50,16 +50,8 @@ export const ItemCount = ({ item, stock, initial, onAdd, eliminar, removeAllElem
                     <FontAwesomeIcon icon={faPlus} className="product-count__icon" onClick={aumentarArticulos} />
                 </div>
             </div>
-            <Boton click={()=>{onAdd({ item, cantArticulos})}} clase={`btn btnAdd`} disabled={stockInicial === 0 && cantArticulos === 0 ? true : false}>
+            <Boton click={()=>{onAdd(cantArticulos)}} clase={`btn btnAdd`} disabled={stockInicial === 0 && cantArticulos === 0 ? true : false}>
                 Agregar
-            </Boton>
-    
-            <Boton click={()=>{eliminar(item.id)}} clase={`btn btnDelete`}>
-                Eliminar
-            </Boton>
-
-            <Boton click={removeAllElements} clase={`btn btnDelete`}>
-                Eliminar elementos
             </Boton>
         </div>
     )
