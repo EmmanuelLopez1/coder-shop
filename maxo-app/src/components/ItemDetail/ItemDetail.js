@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import { Boton } from '../Boton/Boton'
 import { ItemCount } from '../ItemCount/ItemCount'
 import './ItemDetail.scss'
-import {useContext} from 'react'
-import {CartContext} from '../../context/cartContext'
+import { useContext } from 'react'
+import { CartContext } from '../../context/cartContext'
 
 export const ItemDetail = ({ item }) => {
-    const {addItem, removeItem, deleteAllElements} = useContext(CartContext)
+    const { addItem, removeItem, deleteAllElements } = useContext(CartContext)
 
     const [price, setPrice] = useState('')
     const [productosComprados, setProductosComprados] = useState(false)
@@ -16,25 +16,27 @@ export const ItemDetail = ({ item }) => {
         setPrice(Math.floor(item.price[0].price))
     }, [])
 
-    
+
     function onAdd(cantArticulos) {
-        addItem({item, cantArticulos})
+        addItem({ item, cantArticulos })
         setProductosComprados(true)
     }
- 
+
     return (
         <div className="itemDetail">
-            <h3 className="itemDetail__name">
-                {item.name}
-            </h3>
             <img src={item.images[0].url} alt="" className="itemDetail__img" />
-            <h4 className="itemDetail_price">
-                {'$' + price}
-            </h4>
-            <p className="itemDetail__description">
-                {item.description}
-            </p>
-           {productosComprados === false ?  <ItemCount item={item} stock={5} initial={1} onAdd={onAdd} eliminar={removeItem} removeAllElements={deleteAllElements} productName={item.name}/> : <Link to={'/cart'}><Boton>Terminar Compra</Boton></Link> }
+            <div className="ItemDetail-detalles">
+                <h4 className="itemDetail__price">
+                    {'$' + price}
+                </h4>
+                <h3 className="itemDetail__title">
+                    {item.name}
+                </h3>
+                <p className="itemDetail__description">
+                    {item.description}
+                </p>
+                {productosComprados === false ? <ItemCount item={item} stock={5} initial={1} onAdd={onAdd} eliminar={removeItem} removeAllElements={deleteAllElements} productName={item.name} /> : <Link to={'/cart'}><Boton>Terminar Compra</Boton></Link>}
+            </div>
         </div>
     )
-}   
+}

@@ -4,63 +4,79 @@ export const CartContext = createContext()
 export const CartProvider = ({ children }) => {
     const [item, setItem] = useState([])
     const [precioTotal, setPrecioTotal] = useState()
-    
+
     useEffect(() => {
         getPrecioTotal()
-        console.log(item);
+        // console.log(item);
     }, [item])
 
-    const deleteArticle = (id)=>{
-        item.map(item=> {
-            if(item.item.id === id){
-                item.cantArticulos--
-                console.log('baby');
+    const deleteArticle = (id) => {
+        const items = item.filter(baby => {
+            if (baby.item.id != id) {
+                return item
             }
+        })
+
+        const itemDisminuido = item.map((art, index) => {
+            if (art.item.id === id && art.cantArticulos > 0) {
+                removeItem(id)
+                art.cantArticulos--
+                if (index > 0) {
+                    setItem([...items, art])
+                } else {
+                    setItem([art, ...items])
+                }
+
+                if (art.cantArticulos === 0) {
+                    removeItem(id)
+                }
+            }
+
+
         })
     }
 
-    const getPrecioTotal = ()=>{
+    const getPrecioTotal = () => {
         let total = 0
-        
+
         item.map(item => {
             total += parseInt(item.item.price[0].price) * item.cantArticulos
         })
         setPrecioTotal(total)
-        console.log(total);
     }
 
     const addItem = (newItem) => {
         const id = newItem.item.id
         const noArt = newItem.cantArticulos
-        if(isInCart(id)){
+        if (isInCart(id)) {
             updateCart(id, noArt)
         }
-        else{
-            setItem([...item,  newItem]);
+        else {
+            setItem([...item, newItem]);
         }
     }
 
     function isInCart(id) {
-        const validacion = item.findIndex(item=> item.item.id === id)
-        if(validacion != -1){
+        const validacion = item.findIndex(item => item.item.id === id)
+        if (validacion != -1) {
             return true
         }
-        else{
+        else {
             return false
         }
     }
 
     function updateCart(id, noArt) {
-        const newItems = item.map(item=>{
+        const newItems = item.map(item => {
             let artActuales = item.cantArticulos
-            if(item.item.id === id){
-                return{
-                    ...item, 
+            if (item.item.id === id) {
+                return {
+                    ...item,
                     cantArticulos: artActuales + noArt
                 }
             }
-            else{
-                return{
+            else {
+                return {
                     ...item
                 }
             }
@@ -78,7 +94,7 @@ export const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{item, precioTotal, addItem, removeItem, deleteAllElements, deleteArticle }}>
+        <CartContext.Provider value={{ item, precioTotal, addItem, removeItem, deleteAllElements, deleteArticle }}>
             {children}
         </CartContext.Provider>
     )

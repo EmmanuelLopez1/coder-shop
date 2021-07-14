@@ -4,6 +4,7 @@ import { ItemListContainer } from './pages/ItemListContainer/ItemListContainer.j
 import { ItemDetailContainer } from './pages/ItemDetailContainer/ItemDetailContainer'
 import { Cart } from './components/Cart/Cart'
 import {CartProvider} from './context/cartContext'
+import './App.scss'
 
 
 

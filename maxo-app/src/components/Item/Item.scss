@@ -1,9 +1,23 @@
 .item{
-    width: 150px;
-    height:100px;
+    margin-top:20px;
+    width: 200px;
+    height: 250px;
+    background-color:white;
+    border-radius: 5px;
+    padding:20px 0px;
     &__img{
+        margin:auto ;
         display:block;
-        width:100%;
-        height:auto;
+        width:150px;
+        height:150px;
     }
+    &__title{
+        text-align:center;
+        color:black;
+        margin-top:20px;
+    }
+}
+
+.item-link{
+    text-decoration: none;
 }
