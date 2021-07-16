@@ -9,7 +9,7 @@ import './Cart.scss'
 
 export const Cart = () => {
     const { item, precioTotal } = useContext(CartContext)
-    const { deleteArticle} = useContext(CartContext)
+    const { removeItem, vaciarCarrito } = useContext(CartContext)
     return (
         <Page>
             <div className="carrito">
@@ -19,7 +19,7 @@ export const Cart = () => {
                             <Item item={item.item} />
                             <div className="info">
                                 <p>{`no Articulos: ${item.cantArticulos}`} </p>
-                                <Boton clase="btn btnDelete" click={() => {deleteArticle(item.item.id) }}>Eliminar un item</Boton>
+                                <Boton clase="btn btnDelete" click={() => {removeItem(item.item.id) }}>Eliminar un item</Boton>
                             </div>
 
                         </div>
@@ -36,7 +36,9 @@ export const Cart = () => {
                 {precioTotal !== 0 ? <p className="precioTotal">
                     {`precioTotal: $${precioTotal}`}
                 </p> : <></>}
-
+                    <Boton clase="btn btnDelete" click={()=>{vaciarCarrito()}}>
+                        Vaciar carrito
+                    </Boton>
             </div>
         </Page>
     )

@@ -1,5 +1,6 @@
 .carrito{
     width:90%;
+    margin: auto;
     display:flex;
     flex-direction:column;
     .item-content{
@@ -22,4 +23,8 @@
         margin-top:100px;
     }
     
+    .btn{
+        width: 200px;
+        margin: auto;
+    }
 }
