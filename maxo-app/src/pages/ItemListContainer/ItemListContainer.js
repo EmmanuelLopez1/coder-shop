@@ -44,6 +44,10 @@ export const ItemListContainer = () => {
         }
     }, [items, id])
 
+    useEffect(() => {
+        
+    })
+
 
 
 
