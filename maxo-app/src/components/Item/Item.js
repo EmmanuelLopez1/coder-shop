@@ -6,9 +6,9 @@ export const Item = ({ item }) => {
     return (
         <Link to={`/item/${item.id}`} className="item-link">
             <article className="item" id={item.id}>
-                <img src={item !== undefined && item.images[0].url} alt="" className="item__img" />
+                <img src={item !== undefined && item.img} alt="" className="item__img" />
                 <h3 className="item__title">
-                    {item !== undefined && item.name}
+                    {item !== undefined && item.title}
                 </h3>
             </article>
         </Link>

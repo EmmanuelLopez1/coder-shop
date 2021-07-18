@@ -11,8 +11,8 @@ export const CartProvider = ({ children }) => {
     }, [item])
 
     const deleteArticle = (id) => {
-        const items = item.filter(baby => {
-            if (baby.item.id != id) {
+        const items = item.filter(item => {
+            if (item.id != id) {
                 return item
             }
         })
@@ -42,10 +42,12 @@ export const CartProvider = ({ children }) => {
 
     const getPrecioTotal = () => {
         let total = 0
-
+        
         item.map(item => {
-            total += parseInt(item.item.price[0].price) * item.cantArticulos
+            console.log(item);
+            total += item.item.price * item.cantArticulos
         })
+        console.log(total);
         setPrecioTotal(total)
     }
 

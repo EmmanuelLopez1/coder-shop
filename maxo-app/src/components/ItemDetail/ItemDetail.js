@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from 'react'
+import './ItemDetail.scss'
 import { Link } from 'react-router-dom'
 import { Boton } from '../Boton/Boton'
 import { ItemCount } from '../ItemCount/ItemCount'
-import './ItemDetail.scss'
 import { useContext } from 'react'
 import { CartContext } from '../../context/cartContext'
 
 export const ItemDetail = ({ item }) => {
     const { addItem, removeItem, deleteAllElements } = useContext(CartContext)
-
-    const [price, setPrice] = useState('')
     const [productosComprados, setProductosComprados] = useState(false)
 
-    useEffect(() => {
-        setPrice(Math.floor(item.price[0].price))
-    }, [])
 
 
     function onAdd(cantArticulos) {
@@ -24,13 +19,13 @@ export const ItemDetail = ({ item }) => {
 
     return (
         <div className="itemDetail">
-            <img src={item.images[0].url} alt="" className="itemDetail__img" />
+            <img src={item.img} alt="" className="itemDetail__img" />
             <div className="ItemDetail-detalles">
                 <h4 className="itemDetail__price">
-                    {'$' + price}
+                    {'$' + item.price}
                 </h4>
                 <h3 className="itemDetail__title">
-                    {item.name}
+                    {item.title}
                 </h3>
                 <p className="itemDetail__description">
                     {item.description}

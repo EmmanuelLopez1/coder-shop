@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { dataBase } from '../../Firebase/firebase'
 import { useParams } from 'react-router-dom'
 import { ItemDetail } from '../../components/ItemDetail/ItemDetail'
 import { Loader } from '../../components/Loader/Loader'
@@ -8,29 +9,49 @@ import { Page } from '../page.js'
 
 export const ItemDetailContainer = () => {
     const { id } = useParams()
-    const url = `https://api.alegra.com/api/v1/items/${id}`
-    const key = 'bWF4aW1pbm8zM0Bob3RtYWlsLmNvbTpiNjkyNGNjMDcyNzE0YjAxMzQ3ZA=='
+    const [loading, setLoading] = useState(false)
     const [items, setItems] = useState(undefined)
+    const [item, setItem] = useState()
+
+
+
 
     useEffect(() => {
-        if (id !== undefined) {
-            const getItems = async function () {
-                const respuesta = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Basic ${key}`
-                    }
-                })
-                const json = await respuesta.json()
-                setItems(json)
+        setLoading(true)
+        const itemCollection = dataBase.collection('productos')
+        itemCollection.get().then((querySnapshot) => {
+            if (querySnapshot.length === 0) {
+                console.log('No results');
             }
-            getItems()
+            const elements = querySnapshot.docs.map(element => {
+                let data = element.data()
+                let id = { id: element.id }
+                const finalObject = { ...data, ...id }
+                return finalObject
+
+            })
+            setItems(elements)
+        }).catch(error => {
+            console.log(error);
+        }).finally(() => {
+            setLoading(false)
+        })
+    }, [])
+
+    useEffect(() => {
+        if (items != undefined) {
+            items.map(item => {
+                if (item.id === id) {
+                    setItem(item)
+                }
+            })
         }
-    }, [id])
+    }, [items])
+
 
     return (
         <Page>
-            {items !== undefined ? <ItemDetail key={items.id} item={items} /> : <Loader />}
+            {item !== undefined ? <ItemDetail item={item} /> : <Loader />}
         </Page>
     )
 }

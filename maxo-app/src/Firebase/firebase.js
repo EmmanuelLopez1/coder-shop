@@ -1,16 +1,16 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
-var firebaseConfig = {
-    apiKey: "AIzaSyDOCAbC123dEf456GhI789jKl01-MnO",
-    authDomain: "myapp-project-123.firebaseapp.com",
-    databaseURL: "https://myapp-project-123.firebaseio.com",
-    projectId: "myapp-project-123",
-    storageBucket: "myapp-project-123.appspot.com",
-    messagingSenderId: "65211879809",
-    appId: "1:65211879909:web:3ae38ef1cdcb2e01fe5f0c",
-    measurementId: "G-8GSGZQ44ST"
-  };
+export const  firebaseConfig = {
+  apiKey: "AIzaSyANe3iruF3lbTKTapEDhQJt8caM2p-EKaM",
+  authDomain: "coder-shop-7ac56.firebaseapp.com",
+  projectId: "coder-shop-7ac56",
+  storageBucket: "coder-shop-7ac56.appspot.com",
+  messagingSenderId: "930776803492",
+  appId: "1:930776803492:web:aaee76a53de6653698de31"
+};
 
-  const fb = firebase.initializeApp(firebaseConfig);
+const db = firebase.initializeApp(firebaseConfig);
+export const dataBase = db.firestore()
+
 
