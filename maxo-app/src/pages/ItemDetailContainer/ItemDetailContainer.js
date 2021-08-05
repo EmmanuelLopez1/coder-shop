@@ -12,10 +12,7 @@ export const ItemDetailContainer = () => {
     const [loading, setLoading] = useState(false)
     const [items, setItems] = useState(undefined)
     const [item, setItem] = useState()
-
-
-
-
+    
     useEffect(() => {
         setLoading(true)
         const itemCollection = dataBase.collection('productos')

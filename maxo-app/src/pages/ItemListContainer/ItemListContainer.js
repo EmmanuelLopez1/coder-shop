@@ -55,7 +55,6 @@ export const ItemListContainer = () => {
     return (
         <Page>
             <>
-                {/* {category !== undefined ? <Item key={id} item={category} /> : items !== undefined ? <ItemList key={items.id} items={items} id={id} category={category} /> : <Loader key={id} />} */}
                 {category !== undefined && items !== undefined  ? <ItemList key={items.id} items={category}/> : items != undefined  ? <ItemList items={items}/> : <Loader key={id}/>}
             </>
         </Page>
